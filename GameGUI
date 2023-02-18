@@ -1,0 +1,78 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.nio.file.Paths;
+import java.util.Random;
+
+public class GameGUI extends JPanel implements ActionListener
+{
+
+  Random r;
+  Timer t;
+  Color background = Color.PINK;
+  int delay = 200;
+  int width = 500;
+  int height = 500;
+
+
+  public GameGUI()
+  {
+    r = new Random();
+    t = new Timer(delay, this);
+    addMouseListener(new GameMouseAdaptor());
+    addKeyListener(new GameKeyboardAdaptor());
+    setBackground(background);
+    setFocusable(true);
+    setPreferredSize(new Dimension(width, height));
+  }
+
+
+  public static void main(String args[])
+  {
+    GameGUI game = new GameGUI();
+    GameWindow gw = new GameWindow("GAME");
+    gw.add(game);
+    gw.pack();
+    gw.setVisible(true);
+  }
+
+
+
+  public void tick()
+  {
+
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e)
+  {
+    tick();
+    repaint();
+  }
+
+  @Override
+  protected void paintComponent(Graphics g)
+  {
+   g.setColor (Color.red);
+   g.fillOval(250, 250, 100, 100);
+  }
+
+  private class GameMouseAdaptor extends MouseAdapter
+  {
+    @Override
+    public void mouseClicked(MouseEvent m)
+    {
+
+    }
+  }
+
+  private class GameKeyboardAdaptor extends KeyAdapter
+  {
+    @Override
+    public void keyPressed(KeyEvent k)
+    {
+
+    }
+  }
+
+}
